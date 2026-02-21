@@ -1,0 +1,28 @@
+# Fly.io config for the dummy app (built from repo root Dockerfile).
+# Deploy with: fly launch (first time) then fly deploy
+
+app = "maintenance-tasks-ui-dummy"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  RAILS_ENV = "production"
+  PORT = "8080"
+  SOLID_QUEUE_IN_PUMA = "1"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ["app"]
+
+[[vm]]
+  memory = "256mb"
+  cpu_kind = "shared"
+  cpus = 1
+
+[deploy]
+  release_command = "bin/rails db:prepare"

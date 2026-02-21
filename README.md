@@ -156,6 +156,34 @@ gem 'maintenance_tasks_ui', path: '../maintenance_tasks_ui'
 
 Then run `bundle install` and restart your Rails server.
 
+## Deploy the dummy app to Fly.io (free)
+
+Deploy the dummy app to [Fly.io](https://fly.io) using the root Dockerfile and `fly.toml` (free tier: apps can scale to zero when idle).
+
+1. **Install the Fly CLI**: [fly.io/docs/hands-on/install-flyctl](https://fly.io/docs/hands-on/install-flyctl)
+
+2. **Log in and launch** (from the repo root):
+   ```bash
+   fly auth login
+   fly launch --no-deploy
+   ```
+   When prompted, pick an app name (e.g. `maintenance-tasks-ui-dummy`) and a region. Use `--no-deploy` so you can set the secret first.
+
+3. **Set the Rails secret** (required for production):
+   ```bash
+   fly secrets set SECRET_KEY_BASE=$(openssl rand -hex 64)
+   ```
+
+4. **Deploy**:
+   ```bash
+   fly deploy
+   ```
+
+5. **Open the app**:  
+   `https://<your-app-name>.fly.dev/maintenance_tasks`
+
+The app uses Fly’s free allowance (e.g. 3 shared VMs, 3 GB storage). With `min_machines_running = 0` it scales to zero when idle; the first request after that may take a few seconds to start. The SQLite database resets on each deploy.
+
 ## Development
 
 After checking out the repo, run `bundle install` to install dependencies.
