@@ -1,0 +1,71 @@
+/**
+ * Status tags (table, run cards)
+ */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.1rem 0.3rem;
+  font-size: 0.6rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  box-shadow: var(--mt-shadow-sm);
+  border: 1px solid transparent;
+}
+
+.tag.is-primary {
+  background-color: var(--mt-primary-light);
+  color: var(--mt-primary-dark);
+}
+
+.tag.is-primary.is-light {
+  background-color: rgba(59, 130, 246, 0.2);
+  color: var(--mt-primary-dark);
+}
+
+.tag.is-secondary {
+  background-color: var(--mt-bg-tertiary);
+  color: var(--mt-text-secondary);
+}
+
+.tag.is-success {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.tag.is-warning {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.tag.is-warning.is-light {
+  background-color: rgba(245, 158, 11, 0.15);
+  color: #92400e;
+}
+
+.tag.is-danger {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.tag.is-info {
+  background-color: #cffafe;
+  color: #164e63;
+}
+
+.tag.is-info.is-light {
+  background-color: rgba(6, 182, 212, 0.15);
+  color: #164e63;
+}
+
+.tag.is-dark {
+  background-color: var(--mt-secondary-dark);
+  color: var(--mt-text-inverse);
+}
+
+.tag.is-light {
+  background-color: var(--mt-bg-tertiary);
+  color: var(--mt-text-secondary);
+}

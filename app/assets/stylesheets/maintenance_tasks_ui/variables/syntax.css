@@ -1,0 +1,25 @@
+/**
+ * Syntax highlighting variables (Ruby, etc.)
+ */
+
+:root {
+  --ruby-comment: #6a737d;
+  --ruby-const: #bd4c00;
+  --ruby-embexpr: #1f2328;
+  --ruby-ident: #8250df;
+  --ruby-number: #0969da;
+  --ruby-keyword: #cf222e;
+  --ruby-string: #0550ae;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ruby-comment: #8b949e;
+    --ruby-const: #ffa657;
+    --ruby-embexpr: #c9d1d9;
+    --ruby-ident: #d2a8ff;
+    --ruby-number: #79c0ff;
+    --ruby-keyword: #ff7b72;
+    --ruby-string: #a5d6ff;
+  }
+}

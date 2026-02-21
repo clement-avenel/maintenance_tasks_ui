@@ -1,0 +1,14 @@
+/**
+ * Reusable keyframe animations
+ */
+
+@keyframes progress-indeterminate {
+  0% { margin-left: 0; }
+  50% { margin-left: 70%; }
+  100% { margin-left: 0; }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}

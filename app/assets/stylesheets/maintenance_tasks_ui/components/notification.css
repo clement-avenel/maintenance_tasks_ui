@@ -1,0 +1,77 @@
+/**
+ * Notifications
+ */
+
+.notification {
+  padding: 1rem 1.5rem;
+  border-radius: var(--mt-radius);
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--mt-border);
+  border-left-width: 3px;
+  box-shadow: var(--mt-shadow-sm);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+  background-color: var(--mt-bg-primary);
+}
+
+.notification::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 0.5rem;
+}
+
+.notification.is-success {
+  background-color: #ecfdf5;
+  border-color: var(--mt-success);
+  color: #065f46;
+}
+
+.notification.is-success::before {
+  background-color: var(--mt-success);
+}
+
+.notification.is-warning {
+  background-color: #fffbeb;
+  border-color: var(--mt-warning);
+  color: #92400e;
+}
+
+.notification.is-warning::before {
+  background-color: var(--mt-warning);
+}
+
+.notification.is-danger {
+  background-color: #fef2f2;
+  border-color: var(--mt-error);
+  color: #991b1b;
+}
+
+.notification.is-danger::before {
+  background-color: var(--mt-error);
+}
+
+.notification.is-info {
+  background-color: #ecfeff;
+  border-color: var(--mt-info);
+  color: #164e63;
+}
+
+.notification.is-info::before {
+  background-color: var(--mt-info);
+}
+
+.notification strong {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.notification p {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}

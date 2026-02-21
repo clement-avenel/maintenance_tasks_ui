@@ -1,16 +1,24 @@
 /*
  * Maintenance Tasks UI – entry point
- * Order: foundation → features (index, forms, navbar, filters, code) → task-show → responsive
+ * Order: variables → mixins → layouts → components → pages → responsive
  *
- *= require maintenance_tasks_ui/foundation/variables
- *= require maintenance_tasks_ui/foundation/layout
- *= require maintenance_tasks_ui/foundation/components
- *= require maintenance_tasks_ui/features/index/tables
- *= require maintenance_tasks_ui/features/forms
- *= require maintenance_tasks_ui/shared/navbar
- *= require maintenance_tasks_ui/features/index/filters
- *= require maintenance_tasks_ui/features/code
- *= require maintenance_tasks_ui/features/syntax_and_forms
- *= require maintenance_tasks_ui/features/task-show/index
- *= require maintenance_tasks_ui/responsive
+ *= require maintenance_tasks_ui/variables/variables
+ *= require maintenance_tasks_ui/variables/syntax
+ *= require maintenance_tasks_ui/mixins/animations
+ *= require maintenance_tasks_ui/layouts/layout
+ *= require maintenance_tasks_ui/layouts/navbar
+ *= require maintenance_tasks_ui/components/box
+ *= require maintenance_tasks_ui/components/button
+ *= require maintenance_tasks_ui/components/notification
+ *= require maintenance_tasks_ui/components/tag
+ *= require maintenance_tasks_ui/components/progress
+ *= require maintenance_tasks_ui/components/forms
+ *= require maintenance_tasks_ui/components/code
+ *= require maintenance_tasks_ui/components/syntax
+ *= require maintenance_tasks_ui/components/run-card
+ *= require maintenance_tasks_ui/pages/index/tables
+ *= require maintenance_tasks_ui/pages/index/filters
+ *= require maintenance_tasks_ui/pages/task-show/page
+ *= require maintenance_tasks_ui/pages/task-show/code-panel
+ *= require maintenance_tasks_ui/layouts/responsive
  */
