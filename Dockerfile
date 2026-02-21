@@ -43,11 +43,12 @@ ENV RAILS_ENV=production \
 
 RUN groupadd --system --gid 1000 rails && \
     useradd rails --uid 1000 --gid 1000 --create-home --shell /bin/bash
-USER 1000:1000
 
 COPY --from=build /usr/local/bundle /usr/local/bundle
 COPY --from=build /app /app
+RUN chown -R rails:rails /app
 
+USER 1000:1000
 WORKDIR /app/spec/dummy
 
 ENTRYPOINT ["/app/spec/dummy/bin/docker-entrypoint"]
