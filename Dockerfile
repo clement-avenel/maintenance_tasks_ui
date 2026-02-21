@@ -38,6 +38,7 @@ RUN apt-get update -qq && \
 
 ENV RAILS_ENV=production \
     BUNDLE_PATH=/usr/local/bundle \
+    BUNDLE_WITHOUT=development:test \
     LD_PRELOAD=/usr/local/lib/libjemalloc.so
 
 RUN groupadd --system --gid 1000 rails && \
