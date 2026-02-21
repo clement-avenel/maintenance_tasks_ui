@@ -3,7 +3,6 @@ app = "maintenance-tasks-ui"
 [env]
   RAILS_ENV = "production"
   PORT = "8080"
-  SOLID_QUEUE_IN_PUMA = "1"
 
 [http_service]
   internal_port = 8080
