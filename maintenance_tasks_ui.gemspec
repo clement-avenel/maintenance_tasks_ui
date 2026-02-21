@@ -31,7 +31,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "kaminari", ">= 1.0"
 
   spec.add_development_dependency "bundler", ">= 2.0"
-  spec.add_development_dependency "rspec-rails", "~> 6.0"
+  spec.add_development_dependency "rspec-rails", "~> 8.0"
   spec.add_development_dependency "capybara", "~> 3.0"
   spec.add_development_dependency "sqlite3", "~> 1.4"
 end
