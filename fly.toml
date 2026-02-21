@@ -6,7 +6,7 @@
 #   fly volumes create rails_storage --region <your-region> --size 1
 #   Then uncomment the [mounts] section below and redeploy.
 
-app = "maintenance-tasks-ui-dummy"
+app = "maintenance-tasks-ui"
 
 [build]
   dockerfile = "Dockerfile"

@@ -167,7 +167,7 @@ Deploy the dummy app to [Fly.io](https://fly.io) using the root Dockerfile and `
    fly auth login
    fly launch --no-deploy
    ```
-   When prompted, pick an app name (e.g. `maintenance-tasks-ui-dummy`) and a region. Use `--no-deploy` so you can set the secret first.
+   When prompted, pick an app name (e.g. `maintenance-tasks-ui`) and a region. Use `--no-deploy` so you can set the secret first.
 
 3. **Set the Rails secret** (required for production):
    ```bash
