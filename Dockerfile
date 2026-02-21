@@ -22,7 +22,11 @@ RUN bundle install && \
 
 RUN bundle exec bootsnap precompile -j 1 --gemfile
 RUN bundle exec bootsnap precompile -j 1 app/ lib/ 2>/dev/null || true
-RUN SECRET_KEY_BASE_DUMMY=1 bundle exec rails assets:precompile
+# Rails needs SECRET_KEY_BASE in production; use a build-time dummy. DB in /tmp so precompile never touches real storage.
+RUN RAILS_ENV=production \
+    SECRET_KEY_BASE=buildkey \
+    DATABASE_URL=sqlite3:///tmp/precompile.sqlite3 \
+    bundle exec rails assets:precompile
 
 # Final stage
 FROM docker.io/library/ruby:${RUBY_VERSION}-slim
