@@ -8,7 +8,6 @@ on:
 jobs:
   scan_ruby:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
@@ -17,13 +16,16 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
+        working-directory: spec/dummy
 
       - name: Scan for common Rails security vulnerabilities using static analysis
         run: bin/brakeman --no-pager
-      
+        working-directory: spec/dummy
+
       - name: Scan for known security vulnerabilities in gems used
         run: bin/bundler-audit
-      
+        working-directory: spec/dummy
+
   scan_js:
     runs-on: ubuntu-latest
 
@@ -35,14 +37,16 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
+        working-directory: spec/dummy
 
       - name: Scan for security vulnerabilities in JavaScript dependencies
         run: bin/importmap audit
+        working-directory: spec/dummy
 
   lint:
     runs-on: ubuntu-latest
     env:
-      RUBOCOP_CACHE_ROOT: tmp/rubocop
+      RUBOCOP_CACHE_ROOT: spec/dummy/tmp/rubocop
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
@@ -51,11 +55,12 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
+        working-directory: spec/dummy
 
       - name: Prepare RuboCop cache
         uses: actions/cache@v4
         env:
-          DEPENDENCIES_HASH: ${{ hashFiles('.ruby-version', '**/.rubocop.yml', '**/.rubocop_todo.yml', 'Gemfile.lock') }}
+          DEPENDENCIES_HASH: ${{ hashFiles('spec/dummy/.ruby-version', 'spec/dummy/Gemfile.lock', '**/.rubocop.yml', '**/.rubocop_todo.yml') }}
         with:
           path: ${{ env.RUBOCOP_CACHE_ROOT }}
           key: rubocop-${{ runner.os }}-${{ env.DEPENDENCIES_HASH }}-${{ github.ref_name == github.event.repository.default_branch && github.run_id || 'default' }}
@@ -64,4 +69,4 @@ jobs:
 
       - name: Lint code for consistent style
         run: bin/rubocop -f github
-
+        working-directory: spec/dummy
