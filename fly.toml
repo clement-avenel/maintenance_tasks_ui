@@ -1,5 +1,10 @@
 # Fly.io config for the dummy app (built from repo root Dockerfile).
 # Deploy with: fly launch (first time) then fly deploy
+#
+# SQLite: by default the DB resets on each deploy (ephemeral disk).
+# To persist it (free 3GB volume), create a volume then add to fly.toml:
+#   fly volumes create rails_storage --region <your-region> --size 1
+#   Then uncomment the [mounts] section below and redeploy.
 
 app = "maintenance-tasks-ui-dummy"
 
@@ -10,6 +15,10 @@ app = "maintenance-tasks-ui-dummy"
   RAILS_ENV = "production"
   PORT = "8080"
   SOLID_QUEUE_IN_PUMA = "1"
+
+# [mounts]
+#   source = "rails_storage"
+#   destination = "/rails/storage"
 
 [http_service]
   internal_port = 8080

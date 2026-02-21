@@ -182,7 +182,9 @@ Deploy the dummy app to [Fly.io](https://fly.io) using the root Dockerfile and `
 5. **Open the app**:  
    `https://<your-app-name>.fly.dev/maintenance_tasks`
 
-The app uses Fly’s free allowance (e.g. 3 shared VMs, 3 GB storage). With `min_machines_running = 0` it scales to zero when idle; the first request after that may take a few seconds to start. The SQLite database resets on each deploy.
+The app uses Fly’s free allowance (e.g. 3 shared VMs, 3 GB storage). With `min_machines_running = 0` it scales to zero when idle; the first request after that may take a few seconds to start. The dummy app uses **SQLite** (no separate database to add). By default the SQLite DB lives on ephemeral disk, so it resets on each deploy or restart.
+
+**Optional — persist SQLite:** Fly gives 3 GB free volume storage. To keep the DB across deploys: create a volume (`fly volumes create rails_storage --region <your-region> --size 1`), then in `fly.toml` uncomment the `[mounts]` section and run `fly deploy`. The app must stay in a single region when using a volume.
 
 ## Development
 
