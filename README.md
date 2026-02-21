@@ -158,14 +158,14 @@ Then run `bundle install` and restart your Rails server.
 
 ## Deploy the dummy app to Fly.io (free)
 
-Deploy the dummy app to [Fly.io](https://fly.io) using the root Dockerfile and `fly.toml` (free tier: apps can scale to zero when idle).
+Deploy the dummy app to [Fly.io](https://fly.io): config is in **`spec/dummy/fly.toml`**; the **Dockerfile** at repo root is used so the build includes the gem. Run all commands **from the repo root**.
 
 1. **Install the Fly CLI**: [fly.io/docs/hands-on/install-flyctl](https://fly.io/docs/hands-on/install-flyctl)
 
-2. **Log in and launch** (from the repo root):
+2. **Log in and create the app** (from repo root):
    ```bash
    fly auth login
-   fly launch --no-deploy
+   fly launch . -c spec/dummy/fly.toml --no-deploy
    ```
    When prompted, pick an app name (e.g. `maintenance-tasks-ui`) and a region. Use `--no-deploy` so you can set the secret first.
 
@@ -173,10 +173,11 @@ Deploy the dummy app to [Fly.io](https://fly.io) using the root Dockerfile and `
    ```bash
    fly secrets set SECRET_KEY_BASE=$(openssl rand -hex 64)
    ```
+   (If you have multiple apps, add `-a maintenance-tasks-ui` to target this one.)
 
 4. **Deploy**:
    ```bash
-   fly deploy
+   fly deploy . -c spec/dummy/fly.toml
    ```
 
 5. **Open the app**:  
@@ -184,7 +185,9 @@ Deploy the dummy app to [Fly.io](https://fly.io) using the root Dockerfile and `
 
 The app uses Fly’s free allowance (e.g. 3 shared VMs, 3 GB storage). With `min_machines_running = 0` it scales to zero when idle; the first request after that may take a few seconds to start. The dummy app uses **SQLite** (no separate database to add). By default the SQLite DB lives on ephemeral disk, so it resets on each deploy or restart.
 
-**Optional — persist SQLite:** Fly gives 3 GB free volume storage. To keep the DB across deploys: create a volume (`fly volumes create rails_storage --region <your-region> --size 1`), then in `fly.toml` uncomment the `[mounts]` section and run `fly deploy`. The app must stay in a single region when using a volume.
+**Optional — persist SQLite:** Fly gives 3 GB free volume storage. To keep the DB across deploys: create a volume (`fly volumes create rails_storage --region <your-region> --size 1`), then in **`spec/dummy/fly.toml`** uncomment the `[mounts]` section and run `fly deploy . -c spec/dummy/fly.toml`. The app must stay in a single region when using a volume.
+
+**GitHub Actions:** The workflow deploys on push to `main` using `spec/dummy/fly.toml`. Create the app once (step 2 above), then add `FLY_API_TOKEN` as a repo secret (Settings → Secrets and variables → Actions); create a token with `fly tokens create deploy`.
 
 ## Development
 
