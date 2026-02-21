@@ -1,0 +1,10 @@
+<div class="notification is-info">
+  <strong>No tasks found</strong>
+  <p>
+    <% if @search_query.present? || (@status_filter.present? && @status_filter != "all") %>
+      No tasks match your current filters. <%= link_to "Clear filters", tasks_path, class: "has-text-link has-text-weight-semibold" %> to see all tasks.
+    <% else %>
+      There are no maintenance tasks available at this time.
+    <% end %>
+  </p>
+</div>

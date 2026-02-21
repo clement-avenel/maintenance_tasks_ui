@@ -1,0 +1,48 @@
+/**
+ * Task show page: source code panel
+ */
+
+.task-show-code-panel {
+  position: sticky;
+  top: 1rem;
+}
+
+.task-show-code-panel .task-section-title {
+  margin-bottom: 1rem;
+}
+
+.task-show-code-panel .task-code-content {
+  margin-top: 0;
+}
+
+.task-code-content {
+  overflow-x: auto;
+  border-radius: var(--mt-radius-lg);
+  border: 1px solid var(--mt-border);
+  background-color: var(--mt-bg-primary);
+  box-shadow: var(--mt-shadow);
+}
+
+.task-code-content pre {
+  margin: 0;
+  padding: 1.25rem 1.5rem;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  white-space: pre;
+  min-width: min-content;
+}
+
+.task-code-content code {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  color: var(--mt-text-primary);
+  background: transparent;
+  border: none;
+  padding: 0;
+  border-radius: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .task-code-content {
+    border-color: var(--mt-border);
+  }
+}

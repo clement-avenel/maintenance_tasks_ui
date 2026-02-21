@@ -1,0 +1,25 @@
+<%# Optional run options (CSV, parameters). Rendered inside task show run form. %>
+<details class="task-show-run-options-details">
+  <summary class="task-show-run-options-summary">Options</summary>
+  <div class="task-show-run-options-inner">
+    <% if @task.csv_task? %>
+      <div class="form-group">
+        <%= form.label :csv_file, "CSV file", class: "form-label" %>
+        <%= form.file_field :csv_file, accept: "text/csv", class: "input form-control" %>
+      </div>
+    <% end %>
+    <% if @task.parameter_names.any? %>
+      <div class="task-parameters grid is-col-min-15">
+        <%= fields_for :task, @task.new do |ff| %>
+          <% @task.parameter_names.each do |parameter_name| %>
+            <div class="cell form-group">
+              <%= ff.label parameter_name, parameter_name, class: ["form-label", "is-family-monospace", { "is-required": attribute_required?(ff.object, parameter_name) }] %>
+              <%= parameter_field(ff, parameter_name) %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+    <%= render "maintenance_tasks/tasks/custom", form: form if theme_template_exists?("maintenance_tasks/tasks/custom") %>
+  </div>
+</details>

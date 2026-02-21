@@ -1,0 +1,22 @@
+<% if run.respond_to?(:started?) && run.started? %>
+  <% value = run.respond_to?(:tick_count) ? run.tick_count&.to_i : nil %>
+  <% total = run.respond_to?(:tick_total) ? run.tick_total&.to_i : nil %>
+  <% max = total.to_i.positive? ? [total, value.to_i].max : value %>
+  <% status_classes = run.respond_to?(:status) ? theme_status_classes(run.status) : ["is-light"] %>
+  <div class="block">
+    <% if value.present? && max.present? && max.positive? %>
+      <% max_i = [max, 1].max %>
+      <% value_i = [value, max_i].min %>
+      <% pct = (100.0 * value_i / max_i).round(0) %>
+      <%= content_tag(:div, tag.progress(value: value_i, max: max_i, class: ["progress", "mt-0"] + status_classes) + content_tag(:span, "#{pct}%", class: "progress-percent"), class: "progress-cell-inner") %>
+    <% else %>
+      <%= tag.progress(value: nil, max: nil, class: ["progress", "progress--indeterminate", "mt-0"] + status_classes) %>
+    <% end %>
+    <% if local_assigns[:show_text] && run.respond_to?(:tick_count) %>
+      <% c = run.tick_count.to_i %>
+      <% t = run.respond_to?(:tick_total) ? run.tick_total.to_i : 0 %>
+      <% msg = t <= 0 ? "Processed #{number_with_delimiter(c)} #{"item".pluralize(c)}." : (c > t ? "Processed #{number_with_delimiter(c)} #{"item".pluralize(c)} (expected #{number_with_delimiter(t)})." : "Processed #{number_with_delimiter(c)} out of #{number_with_delimiter(t)} #{"item".pluralize(t)} (#{(100.0 * c / t).round(0)}%).") %>
+      <%= tag.p(tag.i(msg)) %>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,7 @@
+<tr class="task-row">
+  <% task_table_columns.each do |col| %>
+    <td class="<%= col[:cell_class] %>" <%= "style=\"text-align: #{col[:align]};\"".html_safe if col[:align].present? %>>
+      <%= task_table_cell_content(col[:key], task, run) %>
+    </td>
+  <% end %>
+</tr>

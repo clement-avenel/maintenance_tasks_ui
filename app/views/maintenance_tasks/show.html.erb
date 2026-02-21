@@ -1,0 +1,60 @@
+<% content_for :page_title, @task %>
+
+<div class="task-show">
+  <nav class="task-show-breadcrumb" aria-label="Breadcrumb">
+    <%= link_to tasks_index_back_url, class: "task-show-breadcrumb-link" do %>
+      <span class="task-show-breadcrumb-icon" aria-hidden="true">←</span>
+      Tasks
+    <% end %>
+  </nav>
+
+  <header class="task-show-header">
+    <h1 class="task-show-title"><%= @task %></h1>
+    <%= form_with url: task_runs_path(@task), method: :post, class: "task-show-run-form" do |form| %>
+      <%= render "maintenance_tasks/detail/run_form/run_form_options", form: form if @task.csv_task? || @task.parameter_names.any? %>
+      <%= form.submit "Run task", class: "button is-success", disabled: @task.deleted? %>
+    <% end %>
+  </header>
+
+  <div class="task-show-columns <%= 'task-show-columns--runs-only' unless @task.code %>">
+    <div class="task-show-col task-show-col--code">
+      <% if (code = @task.code) %>
+        <section class="task-show-code-panel" aria-labelledby="source-code-heading">
+          <h2 id="source-code-heading" class="task-section-title">Source code</h2>
+          <div class="task-code-content">
+            <pre><code><%= highlight_code(code) %></code></pre>
+          </div>
+        </section>
+      <% end %>
+    </div>
+
+    <div class="task-show-col task-show-col--runs">
+      <%= tag.div(data: { refresh: @task.refresh? || "" }, class: "task-show-runs") do %>
+        <% if @task.active_runs.any? %>
+          <section class="task-runs-section" aria-labelledby="active-runs-heading">
+            <h2 id="active-runs-heading" class="task-section-title">Active runs</h2>
+            <div class="task-runs-list">
+              <%= render partial: "maintenance_tasks/detail/run_card/run", collection: @task.active_runs, locals: { expand_by_default: true } %>
+            </div>
+          </section>
+        <% end %>
+
+        <% if @task.runs_page.records.present? %>
+          <section class="task-runs-section" aria-labelledby="previous-runs-heading">
+            <h2 id="previous-runs-heading" class="task-section-title">Previous runs</h2>
+            <div class="task-runs-list">
+              <% @task.runs_page.records.each_with_index do |run, index| %>
+                <%= render partial: "maintenance_tasks/detail/run_card/run", locals: { run: run, expand_by_default: index == 0 } %>
+              <% end %>
+            </div>
+            <% unless @task.runs_page.last? %>
+              <p class="task-runs-more">
+                <%= link_to "Next page →", task_path(@task, cursor: @task.runs_page.next_cursor), class: "button is-link is-outlined" %>
+              </p>
+            <% end %>
+          </section>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

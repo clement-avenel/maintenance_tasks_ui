@@ -1,0 +1,28 @@
+<div class="table-wrapper">
+  <div class="table-container">
+    <div class="table-container__inner">
+      <table class="table is-fullwidth is-striped">
+        <thead>
+          <tr>
+            <% task_table_columns.each do |col| %>
+              <th class="<%= task_table_th_class(col) %>" <%= "style=\"#{task_table_th_style(col)}\"".html_safe if task_table_th_style(col).present? %> <%= "aria-label=\"#{col[:header_aria_label]}\"".html_safe if col[:header_aria_label].present? %>>
+                <% if col[:sortable] %>
+                  <%= sort_link col[:sort_key], col[:label], search_query: @search_query, status_filter: @status_filter, sort_column: @sort_column, sort_direction: @sort_direction %>
+                <% elsif col[:label].present? %>
+                  <%= col[:label] %>
+                <% end %>
+              </th>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <% @tasks.each do |task| %>
+            <% run = task.related_run %>
+            <% run.reload if run.respond_to?(:reload) && run.respond_to?(:active?) && run.active? %>
+            <%= render "maintenance_tasks/list/table/task_table_row", task: task, run: run %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="filters-bar mb-4">
+  <%= form_with url: tasks_path, method: :get, class: "filters-form", id: "filters-form" do |f| %>
+    <%= hidden_field_tag :sort, @sort_column %>
+    <%= hidden_field_tag :direction, @sort_direction %>
+    <div class="filters-row">
+      <div class="filter-group filter-search">
+        <%= f.text_field :search,
+            value: @search_query,
+            placeholder: "Search tasks...",
+            class: "input search-input",
+            autocomplete: "off",
+            id: "search-input" %>
+      </div>
+
+      <div class="filter-group filter-status">
+        <%= f.select :status,
+            options_for_select([
+              ["All Tasks", "all"],
+              ["Active", "active"],
+              ["New", "new"],
+              ["Completed", "completed"]
+            ], @status_filter),
+            {},
+            { class: "select status-select", id: "status-select", onchange: "this.form.submit()" } %>
+      </div>
+
+      <div class="filter-actions">
+        <%= f.submit "Search", class: "button is-primary is-small" %>
+      </div>
+    </div>
+  <% end %>
+</div>

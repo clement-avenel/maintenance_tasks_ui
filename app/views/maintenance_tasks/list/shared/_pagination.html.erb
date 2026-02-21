@@ -1,0 +1,10 @@
+<nav class="pagination-wrapper" aria-label="Pagination">
+  <span class="pagination-entries" aria-live="polite">
+    <% first = (@tasks.current_page - 1) * @tasks.limit_value + 1 %>
+    <% last = [@tasks.current_page * @tasks.limit_value, @tasks.total_count].min %>
+    <%= "#{first}–#{last} of #{@tasks.total_count} tasks" %>
+  </span>
+  <div class="pagination-nav">
+    <%= paginate @tasks, params: { search: @search_query, status: @status_filter, sort: @sort_column, direction: @sort_direction }, window: 2, left: 1, right: 1, outer_window: 0 %>
+  </div>
+</nav>

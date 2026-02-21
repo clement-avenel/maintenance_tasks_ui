@@ -1,0 +1,118 @@
+/**
+ * Task show page: run card (details, header, body, progress, actions)
+ */
+
+.run-card {
+  padding: 1.25rem 1.5rem;
+}
+
+.run-card:hover,
+.run-card.box:hover {
+  box-shadow: var(--mt-shadow);
+  transform: none;
+}
+
+.run-card.box:hover::before {
+  transform: scaleX(0);
+}
+
+.run-card::before {
+  display: none;
+}
+
+.run-card-details {
+  padding: 0;
+  margin: 0;
+}
+
+.run-card-details summary.run-card-header {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+  user-select: none;
+  transition: background-color 0.15s ease;
+  border-radius: var(--mt-radius-sm);
+  margin: -0.25rem -0.5rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.run-card-details summary.run-card-header:hover {
+  background-color: var(--mt-bg-tertiary);
+}
+
+.run-card-accordion-icon {
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-right: 0.5rem;
+  border-right: 2px solid var(--mt-text-muted);
+  border-bottom: 2px solid var(--mt-text-muted);
+  transform: rotate(-45deg);
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.run-card-details[open] .run-card-accordion-icon {
+  transform: rotate(45deg);
+}
+
+.run-card-body {
+  padding-top: 1rem;
+  margin-top: 0.75rem;
+  border-top: 1px solid var(--mt-border-light);
+}
+
+.run-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.run-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.run-card-date {
+  font-size: 0.9375rem;
+  color: var(--mt-text-secondary);
+}
+
+.run-card-id {
+  font-size: 0.8125rem;
+  color: var(--mt-text-muted);
+  text-decoration: none;
+}
+
+.run-card-id:hover {
+  color: var(--mt-primary);
+}
+
+.run-card-progress {
+  margin-bottom: 1rem;
+}
+
+.run-card-content {
+  margin-bottom: 1rem;
+}
+
+.run-card-content:last-of-type {
+  margin-bottom: 0;
+}
+
+.run-card-actions {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--mt-border-light);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.run-card-actions .button {
+  margin-bottom: 0;
+}

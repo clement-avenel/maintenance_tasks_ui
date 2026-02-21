@@ -1,0 +1,48 @@
+/**
+ * Ruby syntax highlighting (task show code), form elements, details/summary
+ */
+
+/* Ruby syntax highlighting */
+:root {
+  --ruby-comment: #6a737d;
+  --ruby-const: #bd4c00;
+  --ruby-embexpr: #1f2328;
+  --ruby-ident: #8250df;
+  --ruby-number: #0969da;
+  --ruby-keyword: #cf222e;
+  --ruby-string: #0550ae;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ruby-comment: #8b949e;
+    --ruby-const: #ffa657;
+    --ruby-embexpr: #c9d1d9;
+    --ruby-ident: #d2a8ff;
+    --ruby-number: #79c0ff;
+    --ruby-keyword: #ff7b72;
+    --ruby-string: #a5d6ff;
+  }
+}
+
+.ruby-comment { color: var(--ruby-comment); }
+.ruby-const { color: var(--ruby-const); }
+.ruby-embexpr-beg, .ruby-embexpr-end, .ruby-period { color: var(--ruby-embexpr); }
+.ruby-ident, .ruby-symbeg { color: var(--ruby-ident); }
+.ruby-ivar, .ruby-cvar, .ruby-gvar, .ruby-int, .ruby-imaginary, .ruby-float, .ruby-rational { color: var(--ruby-number); }
+.ruby-kw { color: var(--ruby-keyword); }
+.ruby-label, .ruby-tstring-beg, .ruby-tstring-content, .ruby-tstring-end { color: var(--ruby-string); }
+
+/* Form elements and details/summary */
+summary { cursor: pointer; }
+input[type="datetime-local"],
+input[type="date"],
+input[type="time"] {
+  width: fit-content;
+}
+details > summary {
+  list-style: none;
+}
+summary::-webkit-details-marker {
+  display: none;
+}

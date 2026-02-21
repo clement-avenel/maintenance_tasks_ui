@@ -1,0 +1,8 @@
+/**
+ * Task show page – entry point
+ * Order: page (breadcrumb, header, form, layout) → code panel → run card
+ *
+ *= require maintenance_tasks_ui/features/task-show/page
+ *= require maintenance_tasks_ui/features/task-show/code
+ *= require maintenance_tasks_ui/features/task-show/run-card
+ */

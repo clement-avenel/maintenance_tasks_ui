@@ -1,0 +1,15 @@
+<%= tag.div(data: { refresh: (defined?(@refresh) && @refresh) || "" }) do %>
+  <% if show_empty_state? %>
+    <%= render "maintenance_tasks/list/shared/empty_state" %>
+  <% else %>
+    <%= render "maintenance_tasks/list/filters/filters_bar" %>
+    <%= tag.div(data: { refresh_table: "1" }) do %>
+      <% if @tasks.empty? %>
+        <%= render "maintenance_tasks/list/shared/no_tasks_notification" %>
+      <% else %>
+        <%= render "maintenance_tasks/list/table/task_table" %>
+        <%= render "maintenance_tasks/list/shared/pagination" if @tasks.respond_to?(:total_pages) && @tasks.total_pages > 1 %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

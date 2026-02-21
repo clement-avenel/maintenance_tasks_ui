@@ -1,0 +1,55 @@
+/**
+ * Top navbar and brand
+ */
+
+.navbar {
+  border-bottom: 1px solid var(--mt-border-light);
+  padding: 0.75rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(8px);
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+@media (prefers-color-scheme: dark) {
+  .navbar {
+    background-color: rgba(15, 23, 42, 0.95);
+    border-bottom-color: var(--mt-border);
+  }
+}
+
+.navbar-container {
+  max-width: 1400px;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.navbar-brand:hover {
+  opacity: 0.9;
+}
+
+.navbar-brand-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--mt-text-primary);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.navbar-brand-subtitle {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--mt-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}

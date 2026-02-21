@@ -1,0 +1,17 @@
+<div class="run-card-actions buttons">
+  <% if run.paused? %>
+    <%= button_to "Resume", resume_task_run_path(@task, run), class: "button is-primary", disabled: @task.deleted? %>
+    <%= button_to "Cancel", cancel_task_run_path(@task, run), class: "button is-danger" %>
+  <% elsif run.errored? %>
+    <%= button_to "Resume", resume_task_run_path(@task, run), class: "button is-primary", disabled: @task.deleted? %>
+  <% elsif run.cancelling? %>
+    <%= button_to "Cancel", cancel_task_run_path(@task, run), class: "button is-danger", disabled: @task.deleted? if run.stuck? %>
+  <% elsif run.pausing? %>
+    <%= button_to "Pausing", pause_task_run_path(@task, run), class: "button is-warning", disabled: true %>
+    <%= button_to "Cancel", cancel_task_run_path(@task, run), class: "button is-danger" %>
+    <%= button_to "Force pause", pause_task_run_path(@task, run), class: "button is-danger", disabled: @task.deleted? if run.stuck? %>
+  <% elsif run.active? %>
+    <%= button_to "Pause", pause_task_run_path(@task, run), class: "button is-warning", disabled: @task.deleted? %>
+    <%= button_to "Cancel", cancel_task_run_path(@task, run), class: "button is-danger" %>
+  <% end %>
+</div>

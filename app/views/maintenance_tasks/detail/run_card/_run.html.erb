@@ -1,0 +1,36 @@
+<article class="run-card box" id="run_<%= run.id %>">
+  <details class="run-card-details" <%= "open" if local_assigns[:expand_by_default] %>>
+    <summary class="run-card-header">
+      <div class="run-card-meta">
+        <span class="run-card-accordion-icon" aria-hidden="true"></span>
+        <time class="run-card-date" datetime="<%= run.created_at.iso8601 %>" title="<%= run.created_at.utc %>">
+          <%= run.created_at.strftime("%b %d, %Y %H:%M") %>
+        </time>
+        <%= status_tag run.status %>
+      </div>
+      <a href="#run_<%= run.id %>" class="run-card-id" title="Run ID">#<%= run.id %></a>
+    </summary>
+
+    <div class="run-card-body">
+      <div class="run-card-progress">
+        <%= render "maintenance_tasks/detail/run_card/progress", run: run, show_text: true %>
+      </div>
+
+      <div class="run-card-content content">
+        <%= render "maintenance_tasks/detail/run_card/info/#{run.status}", run: run %>
+      </div>
+
+      <div class="run-card-content content" id="custom-content">
+        <%= render "maintenance_tasks/runs/info/custom", run: run %>
+      </div>
+
+      <%= render "maintenance_tasks/runs/csv", run: run %>
+      <%= tag.hr if run.csv_file.present? && run.arguments.present? %>
+      <%= render "maintenance_tasks/runs/arguments", arguments: run.masked_arguments %>
+      <%= tag.hr if run.csv_file.present? || (run.arguments.present? && run.metadata.present?) %>
+      <%= render "maintenance_tasks/runs/metadata", metadata: run.metadata %>
+
+      <%= render "maintenance_tasks/detail/run_card/run_actions", run: run %>
+    </div>
+  </details>
+</article>

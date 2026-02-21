@@ -1,0 +1,73 @@
+/**
+ * Theme variables – colors, spacing, shadows, dark mode
+ */
+
+:root {
+  /* Color Palette */
+  --mt-primary: #3b82f6;
+  --mt-primary-dark: #2563eb;
+  --mt-primary-light: #60a5fa;
+
+  --mt-secondary: #64748b;
+  --mt-secondary-dark: #475569;
+  --mt-secondary-light: #94a3b8;
+
+  --mt-success: #10b981;
+  --mt-success-dark: #059669;
+  --mt-warning: #f59e0b;
+  --mt-error: #ef4444;
+  --mt-info: #06b6d4;
+
+  /* Background Colors */
+  --mt-bg-primary: #ffffff;
+  --mt-bg-secondary: #f8fafc;
+  --mt-bg-tertiary: #f1f5f9;
+  --mt-bg-hover: #f8fafc;
+
+  /* Text Colors */
+  --mt-text-primary: #0f172a;
+  --mt-text-secondary: #475569;
+  --mt-text-muted: #94a3b8;
+  --mt-text-inverse: #ffffff;
+
+  /* Border Colors */
+  --mt-border: #e2e8f0;
+  --mt-border-light: #f1f5f9;
+  --mt-border-dark: #cbd5e1;
+
+  /* Shadows */
+  --mt-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --mt-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --mt-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --mt-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+  /* Spacing */
+  --mt-radius: 0.5rem;
+  --mt-radius-sm: 0.25rem;
+  --mt-radius-lg: 0.75rem;
+
+  /* Transitions */
+  --mt-transition: all 0.2s ease-in-out;
+
+  /* Focus ring & primary glow */
+  --mt-focus-ring: 0 0 0 3px rgba(59, 130, 246, 0.2);
+  --mt-primary-glow: 0 2px 4px rgba(59, 130, 246, 0.2);
+  --mt-primary-glow-hover: 0 4px 8px rgba(59, 130, 246, 0.3);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --mt-bg-primary: #0f172a;
+    --mt-bg-secondary: #1e293b;
+    --mt-bg-tertiary: #334155;
+    --mt-bg-hover: #1e293b;
+
+    --mt-text-primary: #f8fafc;
+    --mt-text-secondary: #cbd5e1;
+    --mt-text-muted: #94a3b8;
+
+    --mt-border: #334155;
+    --mt-border-light: #1e293b;
+    --mt-border-dark: #475569;
+  }
+}

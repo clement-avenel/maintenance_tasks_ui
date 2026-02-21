@@ -1,0 +1,2 @@
+# This file ensures the dummy directory is tracked by git
+# The dummy app structure is version controlled, but generated files are ignored
