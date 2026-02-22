@@ -1,8 +1,8 @@
 #!/bin/bash -e
 
-# Ensure DB and tables exist when starting the server (ephemeral disk: release_command runs on a different instance)
-if echo " $* " | grep -q " rails .* server "; then
-  bundle exec rails db:prepare
-fi
+# Ensure DB exists, run migrations, then seed (idempotent on restart)
+set -x
+bundle exec rails db:create db:migrate db:seed
+set +x
 
 exec "$@"

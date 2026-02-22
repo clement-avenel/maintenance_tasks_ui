@@ -42,6 +42,14 @@ bundle exec rails generate maintenance_tasks:task sample_task
 
 This dummy app is automatically used by RSpec when running the test suite.
 
+## Deploy to Fly.io
+
+Deploy from the **repo root** (not from `spec/dummy`). The Dockerfile at the repo root is used so the build includes the gem:
+
+```bash
+fly deploy . -c spec/dummy/fly.toml -a maintenance-tasks-ui
+```
+
 ## Troubleshooting
 
 ### Missing maintenance_tasks_runs table

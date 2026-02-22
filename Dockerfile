@@ -13,11 +13,11 @@ RUN apt-get update -qq && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 WORKDIR /app/spec/dummy
-ENV BUNDLE_DEPLOYMENT=1 \
-    BUNDLE_PATH=/usr/local/bundle \
+ENV BUNDLE_PATH=/usr/local/bundle \
     BUNDLE_WITHOUT=development:test
 
-RUN bundle install && \
+# Path gem (maintenance_tasks_ui) gemspec changed; allow lockfile update
+RUN BUNDLE_DEPLOYMENT=0 BUNDLE_FROZEN=0 bundle install && \
     rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git
 
 RUN bundle exec bootsnap precompile -j 1 --gemfile

@@ -3,6 +3,8 @@
 .github
 spec/dummy/log
 spec/dummy/tmp
+spec/dummy/vendor
+spec/dummy/.bundle
 spec/dummy/.byebug_history
 *.md
 .env*
